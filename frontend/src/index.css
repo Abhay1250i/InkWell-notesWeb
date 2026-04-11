@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    --sidebar-width: 240px;
+    --header-height: 56px;
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone-50 text-stone-800 font-sans antialiased;
+    @apply dark:bg-stone-950 dark:text-stone-100;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  * {
+    @apply border-stone-200 dark:border-stone-800;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-stone-300 dark:bg-stone-700 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-stone-400 dark:bg-stone-600; }
+
+  /* Text selection */
+  ::selection { @apply bg-accent-200 text-accent-900; }
+}
+
+/* ─── Components ────────────────────────────────────────────────────────── */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+           font-sans font-medium text-sm transition-all duration-150
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent-600 text-white hover:bg-accent-700 active:bg-accent-800
+           dark:bg-accent-500 dark:hover:bg-accent-600;
+  }
+
+  .btn-secondary {
+    @apply btn bg-stone-100 text-stone-700 hover:bg-stone-200 active:bg-stone-300
+           dark:bg-stone-800 dark:text-stone-200 dark:hover:bg-stone-700;
+  }
+
+  .btn-ghost {
+    @apply btn text-stone-600 hover:bg-stone-100 active:bg-stone-200
+           dark:text-stone-400 dark:hover:bg-stone-800;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-950 dark:text-red-400 dark:hover:bg-red-900;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 rounded-lg border text-sm font-sans
+           bg-white dark:bg-stone-900
+           border-stone-200 dark:border-stone-700
+           text-stone-800 dark:text-stone-100
+           placeholder-stone-400 dark:placeholder-stone-600
+           focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent
+           transition-all duration-150;
+  }
+
+  .card {
+    @apply bg-white dark:bg-stone-900 rounded-xl border border-stone-200
+           dark:border-stone-800 shadow-card;
+  }
+}
+
+/* ─── Markdown Editor Overrides ─────────────────────────────────────────── */
+.wmde-markdown-var {
+  --color-canvas-default: transparent !important;
+}
+
+.w-md-editor {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+.w-md-editor-text-pre > code,
+.w-md-editor-text-input,
+.w-md-editor-text {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+.w-md-editor-toolbar {
+  @apply border-b border-stone-200 dark:border-stone-700 bg-transparent !important;
+  padding: 4px 8px !important;
+}
+
+.w-md-editor-toolbar ul li button {
+  @apply text-stone-600 dark:text-stone-400 hover:text-accent-600 dark:hover:text-accent-400 !important;
+}
+
+.wmde-markdown {
+  @apply bg-transparent text-stone-800 dark:text-stone-100 font-sans !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
+.wmde-markdown h1, .wmde-markdown h2, .wmde-markdown h3 {
+  @apply font-serif text-stone-900 dark:text-stone-50 !important;
+  border: none !important;
+}
+
+.wmde-markdown code {
+  @apply bg-stone-100 dark:bg-stone-800 text-accent-700 dark:text-accent-400 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 13px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+.wmde-markdown blockquote {
+  @apply border-l-4 border-accent-400 text-stone-500 dark:text-stone-400 !important;
+}
